@@ -491,7 +491,13 @@ impl ValueInfoProto {
                         .map(|(idx, x)| {
                             if x.has_dim_param() {
                                 return Err(DataTypeError::ParametrizedDimensionUnsupported(
-                                    self.get_name().to_string() + "#" + &idx.to_string(),
+                                    self.get_name().to_string()
+                                        + "#"
+                                        + &idx.to_string()
+                                        + "#"
+                                        + x.get_dim_param()
+                                        + "#"
+                                        + &x.get_dim_value().to_string(),
                                 ));
                             }
                             Ok(x.get_dim_value())
