@@ -155,7 +155,12 @@ impl<'model> Node<'model> {
                             .get_output()
                             .iter()
                             .position(|s| s == input_name)
-                            .ok_or_else(|| IrError::OutputNodeNotFound(input_name.to_string()))?,
+                            .ok_or_else(|| {
+                                IrError::OutputNodeNotFound(format!(
+                                    "from_node {}",
+                                    input_name.to_string()
+                                ))
+                            })?,
                     },
                     _ => {
                         // The source is an initializer or model onput
